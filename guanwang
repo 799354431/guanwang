@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>山西骏锐科技有限公司</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        /* 顶部导航 */
+        .header {
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        /* .top-bar {
+            background: #69aef7;
+            color: #fff;
+            padding: 8px 0;
+            text-align: center;
+            font-size: 14px;
+        } */
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #69aef7;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 10px 0;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: #69aef7;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #69aef7;
+            transition: width 0.3s;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        /* 轮播图 */
+        .hero-section {
+            margin-top: 120px;
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+        }
+
+        .hero-slider {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            color: #fff;
+            text-align: center;
+        }
+
+        .slide-title {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .slide-subtitle {
+            font-size: 20px;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .slider-indicators {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .indicator.active {
+            background: #69aef7;
+        }
+
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(105, 174, 247, 0.85);
+            color: #fff;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            transition: background 0.3s;
+            z-index: 10;
+        }
+
+        .slider-btn:hover {
+            background: rgba(105, 174, 247, 1);
+        }
+
+        .prev-btn {
+            left: 20px;
+        }
+
+        .next-btn {
+            right: 20px;
+        }
+
+        /* 主营业务 */
+        .business-section {
+            padding: 80px 0;
+            background: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: left;
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 50px;
+            color: #69aef7;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: #69aef7;
+        }
+
+        .business-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .business-item {
+            text-align: left;
+            padding: 40px 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .business-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .business-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .business-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 0 20px 0;
+            background: #69aef7;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 32px;
+        }
+
+        .business-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .business-desc {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .learn-more {
+            display: inline-block;
+            background: #69aef7;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .learn-more:hover {
+            background: #4a94eb;
+        }
+
+        /* 关于我们 */
+        .about-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 28px;
+            color: #69aef7;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .about-text p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .about-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* 竞争优势 */
+        .advantage-section {
+            padding: 80px 0;
+            background: #fff;
+        }
+
+        .advantage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .advantage-item {
+            text-align: left;
+            padding: 40px 20px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+
+        .advantage-item:hover {
+            border-color: #69aef7;
+            transform: translateY(-5px);
+        }
+
+        .advantage-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 0 20px 0;
+            background: #69aef7;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 28px;
+        }
+
+        .advantage-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .advantage-desc {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .consult-btn {
+            display: inline-block;
+            background: #69aef7;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .consult-btn:hover {
+            background: #4a94eb;
+        }
+
+        /* 新闻中心 */
+        .news-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        /* 案例 */
+        .cases-section {
+            padding: 80px 0;
+            background: #fff;
+        }
+
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .case-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            text-align: left;
+            padding-bottom: 10px;
+        }
+
+        .case-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+        }
+
+        .case-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .case-content {
+            padding: 18px 20px;
+        }
+
+        .case-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .news-card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .news-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .news-content {
+            padding: 25px;
+            text-align: left;
+        }
+
+        .news-date {
+            color: #69aef7;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .news-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .news-excerpt {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* 荣誉证书 */
+        .qualification-section {
+            padding: 80px 0;
+            background: #fff;
+        }
+
+        .qualification-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .qualification-item {
+            text-align: left;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+
+        .qualification-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .qualification-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 0 15px 0;
+            background: #69aef7;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 24px;
+        }
+
+        .qualification-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        /* 证书横向滚动 */
+        .cert-scroller {
+            position: relative;
+            overflow: hidden;
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px 0;
+        }
+
+        .cert-track {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            width: max-content;
+            will-change: transform;
+        }
+
+        .cert-item img {
+            height: 100px;
+            width: auto;
+            display: block;
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            background: #f8f9fa;
+        }
+
+        /* 滚动暂停由 JS 控制 */
+
+        /* 联系我们 */
+        .contact-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .contact-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            padding: 30px;
+        }
+
+        .contact-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .contact-item {
+            color: #333;
+            line-height: 1.8;
+        }
+
+        .contact-label {
+            color: #69aef7;
+            font-weight: 600;
+            margin-right: 8px;
+        }
+
+        /* 页脚 */
+        .footer {
+            background: #69aef7;
+            color: #fff;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #e6f2ff;
+        }
+
+        .footer-copyright {
+            color: #e6f2ff;
+            font-size: 14px;
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 15px;
+                height: 60px;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .hero-section {
+                margin-top: 100px;
+                height: 400px;
+            }
+
+            .slide-title {
+                font-size: 28px;
+            }
+
+            .slide-subtitle {
+                font-size: 16px;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .business-grid,
+            .advantage-grid,
+            .news-grid,
+            .qualification-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-section {
+                height: 350px;
+            }
+
+            .slide-title {
+                font-size: 24px;
+            }
+
+            .slide-subtitle {
+                font-size: 14px;
+            }
+
+            .section-title {
+                font-size: 24px;
+            }
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+
+        .error-message {
+            text-align: center;
+            padding: 40px;
+            color: #69aef7;
+            background: #eef7ff;
+            border-radius: 5px;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <!-- <div class="top-bar">
+            400-800-3429
+        </div> -->
+        <div class="nav-container">
+            <div class="logo">山西骏锐科技有限公司</div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#home">首页</a></li>
+                    <li><a href="#about">关于我们</a></li>
+                    <li><a href="#business">产品与服务</a></li>
+                    <li><a href="#news">新闻中心</a></li>
+                    <li><a href="#qualification">荣誉证书</a></li>
+                    <li><a href="#contact">联系我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero-section" id="home">
+        <div class="hero-slider" id="heroSlider">
+            <div class="loading">正在加载轮播图...</div>
+        </div>
+
+        <div class="slider-indicators" id="sliderIndicators"></div>
+        
+        <button class="slider-btn prev-btn">&lt;</button>
+        <button class="slider-btn next-btn">&gt;</button>
+    </section>
+
+    <section class="business-section" id="business">
+        <div class="container">
+            <h2 class="section-title">产品与服务</h2>
+            <div class="business-grid" id="businessGrid">
+                <div class="loading">正在加载产品信息...</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section" id="about">
+        <div class="container">
+            <h2 class="section-title">关于我们</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>山西骏锐科技有限公司</h3>
+                    <p>山西骏锐科技有限公司成立于2021年，成立于山西省太原市迎泽区，注册资金500万元,专注于高端软件定制开发和技术服务的民营企业，致力于为客户提供从需求分析、系统设计到后期维护的全链条解决方案。</p>
+                    <p>公司主要服务于工程、商城、健康、医疗等行业，深耕小型预制构件厂、智慧工地等场景的数字化解决方案研发与落地。</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=300&fit=crop&crop=center" alt="公司简介">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="advantage-section" id="advantage">
+        <div class="container">
+            <h2 class="section-title">案例</h2>
+            <div class="cases-grid" id="casesGrid">
+                <div class="loading">正在加载案例...</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="news-section" id="news">
+        <div class="container">
+            <h2 class="section-title">新闻中心</h2>
+            <div class="news-grid" id="newsGrid">
+                <div class="loading">正在加载新闻信息...</div>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <section class="qualification-section" id="qualification">
+        <div class="container">
+            <h2 class="section-title">荣誉证书</h2>
+            <div class="cert-scroller" id="certScroller">
+                <div class="loading">正在加载证书图片...</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title">联系我们</h2>
+            <div class="contact-card">
+                <div class="contact-list">
+                    <div class="contact-item"><span class="contact-label">电话：</span>18435112187</div>
+                    <div class="contact-item"><span class="contact-label">邮箱：</span>jirui12@qq.com</div>
+                    <div class="contact-item"><span class="contact-label">地址：</span>山西省太原市迎泽区东峰路南段108号国奥城10号楼2单元201室</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#home">首页</a>
+                <a href="#about">关于我们</a>
+                <a href="#business">产品与服务</a>
+                <a href="#advantage">竞争优势</a>
+                <a href="#news">新闻中心</a>
+                <a href="#qualification">荣誉证书</a>
+                <a href="#contact">联系我们</a>
+            </div>
+            <div class="footer-copyright">
+                Copyright © 2023 - 山西骏锐科技有限公司
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 全局变量
+        let currentSlide = 0;
+        let slideInterval;
+        let websiteData = [];
+
+        // API接口地址
+        const API_URL = 'http://192.168.1.6:48080/admin-api/system/website/infoList';
+
+        // 获取网站数据
+        async function fetchWebsiteData() {
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const result = await response.json();
+                
+                if (result.code === 0) {
+                    websiteData = result.data;
+                    renderWebsiteContent();
+                } else {
+                    throw new Error(result.msg || '获取数据失败');
+                }
+            } catch (error) {
+                console.error('获取数据失败:', error);
+                showError('获取数据失败: ' + error.message);
+            }
+        }
+
+        // 渲染网站内容
+        function renderWebsiteContent() {
+            renderHeroSlider();
+            renderProducts();
+            renderNews();
+            renderCertificates();
+            renderCases();
+        }
+
+        // 渲染轮播图 (infoType: 1)
+        function renderHeroSlider() {
+            const heroSlider = document.getElementById('heroSlider');
+            const sliderIndicators = document.getElementById('sliderIndicators');
+            
+            const carouselData = websiteData.filter(item => item.infoType === 1);
+            
+            if (carouselData.length === 0) {
+                // 使用科技公司主题的占位图片
+                const fallbackImages = [
+                    'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=1200&h=500&fit=crop&crop=center',
+                    'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&h=500&fit=crop&crop=center',
+                    'https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=1200&h=500&fit=crop&crop=center'
+                ];
+                
+                let slidesHTML = '';
+                let indicatorsHTML = '';
+
+                fallbackImages.forEach((imgUrl, index) => {
+                    const slideId = `slide-${index}`;
+                    slidesHTML += `
+                        <div class="slide ${index === 0 ? 'active' : ''}" id="${slideId}" style="background-image: url('${imgUrl}')">
+                            <div class="slide-content">
+                             
+                            </div>
+                        </div>
+                    `;
+                    indicatorsHTML += `<span class="indicator ${index === 0 ? 'active' : ''}" data-slide="${index}"></span>`;
+                });
+
+                heroSlider.innerHTML = slidesHTML;
+                sliderIndicators.innerHTML = indicatorsHTML;
+                initSlider();
+                return;
+            }
+
+            let slidesHTML = '';
+            let indicatorsHTML = '';
+
+            carouselData.forEach((item, index) => {
+                const url = extractUrlFromHtml(item.content);
+                const slideId = `slide-${index}`;
+                slidesHTML += `
+                    <div class="slide ${index === 0 ? 'active' : ''}" id="${slideId}" style="background-image: url('${item.imageUrl}')">
+                        <div class="slide-content">
+                       
+                        </div>
+                    </div>
+                `;
+
+                indicatorsHTML += `<span class="indicator ${index === 0 ? 'active' : ''}" data-slide="${index}"></span>`;
+            });
+
+            heroSlider.innerHTML = slidesHTML;
+            sliderIndicators.innerHTML = indicatorsHTML;
+
+            // 重新初始化轮播图
+            initSlider();
+            
+            // 为轮播图添加点击事件
+            carouselData.forEach((item, index) => {
+                const slideElement = document.getElementById(`slide-${index}`);
+                const url = extractUrlFromHtml(item.content);
+                
+                if (url) {
+                    slideElement.style.cursor = 'pointer';
+                    slideElement.addEventListener('click', () => {
+                        window.open(url, '_blank');
+                    });
+                }
+            });
+        }
+
+        // 渲染新闻动态 (infoType: 3)
+        function renderNews() {
+            const newsGrid = document.getElementById('newsGrid');
+            
+            const newsData = websiteData.filter(item => item.infoType === 3);
+            
+            if (newsData.length === 0) {
+                newsGrid.innerHTML = '<div class="error-message">暂无新闻信息</div>';
+                return;
+            }
+
+            let newsHTML = '';
+
+            newsData.forEach(item => {
+                const createDate = new Date(item.createTime);
+                const formattedDate = `${createDate.getFullYear()}-${String(createDate.getMonth() + 1).padStart(2, '0')}-${String(createDate.getDate()).padStart(2, '0')}`;
+                
+                newsHTML += `
+                    <div class="news-card" onclick="handleNewsClick('${encodeURIComponent(item.content)}')">
+                        <img src="${item.imageUrl}" alt="${item.introduction || '新闻图片'}" class="news-image" onerror="this.src='https://via.placeholder.com/300x200?text=新闻图片'">
+                        <div class="news-content">
+                            <div class="news-date">${formattedDate}</div>
+                            <h3 class="news-title">${item.introduction || '新闻标题'}</h3>
+                            <p class="news-excerpt">点击查看详细内容</p>
+                        </div>
+                    </div>
+                `;
+            });
+
+            newsGrid.innerHTML = newsHTML;
+        }
+
+        // 提取HTML内容中的URL链接
+        function extractUrlFromHtml(htmlContent) {
+            if (!htmlContent) return null;
+            
+            // 创建临时DOM元素来解析HTML
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = htmlContent;
+            
+            // 查找a标签的href属性
+            const link = tempDiv.querySelector('a[href]');
+            if (link && link.href) {
+                return link.href;
+            }
+            
+            // 如果没有a标签，检查是否直接是URL
+            if (htmlContent.includes('http')) {
+                // 简单的URL提取正则表达式
+                const urlMatch = htmlContent.match(/https?:\/\/[^\s<>"']+/);
+                if (urlMatch) {
+                    return urlMatch[0];
+                }
+            }
+            
+            return null;
+        }
+
+        // 处理新闻点击
+        function handleNewsClick(content) {
+            const url = extractUrlFromHtml(decodeURIComponent(content));
+            if (url) {
+                window.open(url, '_blank');
+            } else {
+                alert('暂无新闻链接');
+            }
+        }
+
+        // 显示错误信息
+        function showError(message) {
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.textContent = message;
+            document.body.appendChild(errorDiv);
+        }
+
+        // 渲染产品服务 (infoType: 2)
+        function renderProducts() {
+            const productsGrid = document.getElementById('businessGrid');
+            
+            const productsData = websiteData.filter(item => item.infoType === 2);
+            
+            if (productsData.length === 0) {
+                productsGrid.innerHTML = '<div class="error-message">暂无产品信息</div>';
+                return;
+            }
+
+            let productsHTML = '';
+
+            productsData.forEach(item => {
+                const url = extractUrlFromHtml(item.content);
+                const safeUrl = item.imageUrl.replace(/"/g, '&quot;');
+                const safeIntro = item.introduction.replace(/"/g, '&quot;');
+                
+                productsHTML += `
+                    <div class="business-item" onclick="handleProductClick('${encodeURIComponent(item.content)}')">
+                        <img src="${safeUrl}" alt="${safeIntro}" class="business-image" onerror="this.style.display='none'">
+                        <h3 class="business-title">${safeIntro}</h3>
+                        <p class="business-desc">点击了解更多产品信息</p>
+                        <a href="#" class="learn-more" onclick="event.stopPropagation(); handleProductClick('${encodeURIComponent(item.content)}')">了解更多</a>
+                    </div>
+                `;
+            });
+
+            productsGrid.innerHTML = productsHTML;
+        }
+
+        // 处理产品点击
+        function handleProductClick(content) {
+            const url = extractUrlFromHtml(decodeURIComponent(content));
+            if (url) {
+                window.open(url, '_blank');
+            } else {
+                alert('暂无产品链接');
+            }
+        }
+
+        // 渲染荣誉证书横向滚动 (infoType: 5)
+        function renderCertificates() {
+            const scroller = document.getElementById('certScroller');
+            if (!scroller) return;
+
+            const certData = websiteData.filter(item => item.infoType === 5 && item.imageUrl);
+
+            if (certData.length === 0) {
+                scroller.innerHTML = '<div class="error-message">暂无证书图片</div>';
+                return;
+            }
+
+            // 生成一组图片的HTML
+            const groupHTML = certData.map(item => {
+                const safeUrl = item.imageUrl.replace(/\"/g, '&quot;');
+                return `
+                    <div class="cert-item">
+                        <img src="${safeUrl}" alt="证书" onerror="this.style.display='none'">
+                    </div>
+                `;
+            }).join('');
+
+            // 初始放置两组，后续通过移动子元素实现真正连续滚动
+            scroller.innerHTML = `
+                <div class="cert-track">
+                    ${groupHTML}
+                    ${groupHTML}
+                </div>
+            `;
+
+            // 使用 JS 实现无缝无限滚动（预加载图片后测量宽度避免抖动）
+            const track = scroller.querySelector('.cert-track');
+            if (!track) return;
+
+            const imgs = Array.from(track.querySelectorAll('img'));
+
+            function waitImagesLoaded(images) {
+                return Promise.all(images.map(img => new Promise(resolve => {
+                    if (img.complete) return resolve();
+                    const done = () => resolve();
+                    img.addEventListener('load', done, { once: true });
+                    img.addEventListener('error', done, { once: true });
+                })));
+            }
+
+            waitImagesLoaded(imgs).then(() => {
+                let offsetX = 0;
+                let lastTs = null;
+                const speed = 60; // px/s，可调
+                let paused = false;
+
+                function getGapPx() {
+                    const cs = getComputedStyle(track);
+                    const gapStr = cs.getPropertyValue('gap') || cs.getPropertyValue('column-gap') || '0px';
+                    const val = parseFloat(gapStr);
+                    return isNaN(val) ? 0 : val;
+                }
+
+                function firstItemFullWidth() {
+                    const first = track.firstElementChild;
+                    if (!first) return 0;
+                    return first.getBoundingClientRect().width + getGapPx();
+                }
+
+                function step(ts) {
+                    if (!lastTs) lastTs = ts;
+                    const dt = (ts - lastTs) / 1000; // 秒
+                    lastTs = ts;
+
+                    if (!paused) {
+                        offsetX -= speed * dt;
+                        let needWidth = firstItemFullWidth();
+                        while (-offsetX >= needWidth && needWidth > 0) {
+                            // 把第一个子元素移动到末尾，实现真正连续拼接
+                            const first = track.firstElementChild;
+                            if (!first) break;
+                            track.appendChild(first);
+                            offsetX += needWidth;
+                            needWidth = firstItemFullWidth();
+                        }
+                        track.style.transform = `translateX(${offsetX}px)`;
+                    }
+                    requestAnimationFrame(step);
+                }
+
+                // 悬停暂停
+                scroller.addEventListener('mouseenter', () => { paused = true; });
+                scroller.addEventListener('mouseleave', () => { paused = false; });
+
+                requestAnimationFrame(step);
+            });
+        }
+
+        // 渲染案例 (infoType: 4)
+        function renderCases() {
+            const casesGrid = document.getElementById('casesGrid');
+            if (!casesGrid) return;
+
+            const casesData = websiteData.filter(item => item.infoType === 4);
+            if (casesData.length === 0) {
+                casesGrid.innerHTML = '<div class="error-message">暂无案例</div>';
+                return;
+            }
+
+            let casesHTML = '';
+            casesData.forEach(item => {
+                const url = extractUrlFromHtml(item.content);
+                const safeUrl = (item.imageUrl || '').replace(/"/g, '&quot;');
+                const safeIntro = (item.introduction || '案例').replace(/"/g, '&quot;');
+                casesHTML += `
+                    <div class="case-card" onclick="handleCaseClick('${encodeURIComponent(item.content)}')">
+                        <img class="case-image" src="${safeUrl}" alt="${safeIntro}" onerror="this.src='https://images.unsplash.com/photo-1526378722484-bd91ca387e72?w=800&h=400&fit=crop&crop=center'">
+                        <div class="case-content">
+                            <div class="case-title">${safeIntro}</div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            casesGrid.innerHTML = casesHTML;
+        }
+
+        function handleCaseClick(content) {
+            const url = extractUrlFromHtml(decodeURIComponent(content));
+            if (url) {
+                window.open(url, '_blank');
+            }
+        }
+
+        // 轮播图功能
+        function showSlide(index) {
+            const slides = document.querySelectorAll('.slide');
+            const indicators = document.querySelectorAll('.indicator');
+            
+            if (slides.length === 0) return;
+            
+            slides.forEach(slide => slide.classList.remove('active'));
+            indicators.forEach(indicator => indicator.classList.remove('active'));
+          
+            slides[index].classList.add('active');
+            indicators[index].classList.add('active');
+            
+            currentSlide = index;
+        }
+
+        function nextSlide() {
+            const slides = document.querySelectorAll('.slide');
+            if (slides.length === 0) return;
+            
+            const nextIndex = (currentSlide + 1) % slides.length;
+            showSlide(nextIndex);
+        }
+
+        function prevSlide() {
+            const slides = document.querySelectorAll('.slide');
+            if (slides.length === 0) return;
+            
+            const prevIndex = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(prevIndex);
+        }
+
+        function startSlideShow() {
+            slideInterval = setInterval(nextSlide, 5000);
+        }
+
+        function stopSlideShow() {
+            clearInterval(slideInterval);
+        }
+
+        function initSlider() {
+            const slides = document.querySelectorAll('.slide');
+            const indicators = document.querySelectorAll('.indicator');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            
+            if (slides.length === 0) return;
+            
+            currentSlide = 0;
+            
+            // 绑定指示器点击事件
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    showSlide(index);
+                    stopSlideShow();
+                    startSlideShow();
+                });
+            });
+
+            // 绑定前后按钮事件
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => {
+                    prevSlide();
+                    stopSlideShow();
+                    startSlideShow();
+                });
+            }
+
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    nextSlide();
+                    stopSlideShow();
+                    startSlideShow();
+                });
+            }
+
+            // 鼠标悬停暂停轮播
+            const heroSection = document.querySelector('.hero-section');
+            if (heroSection) {
+                heroSection.addEventListener('mouseenter', stopSlideShow);
+                heroSection.addEventListener('mouseleave', startSlideShow);
+            }
+
+            startSlideShow();
+        }
+
+        // 平滑滚动
+        function initSmoothScroll() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+
+        // 页面加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取网站数据
+            fetchWebsiteData();
+            
+            // 初始化平滑滚动
+            initSmoothScroll();
+        });
+    </script>
+</body>
+</html>
